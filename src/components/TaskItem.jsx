@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const TaskContainer = styled.li`
   display: flex;
@@ -34,13 +35,19 @@ const DeleteButton = styled.button`
   }
 `;
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, onDelete }) => {
   return (
     <TaskContainer>
       <TaskText>{task}</TaskText>
-      <DeleteButton>Borrar</DeleteButton>
+      <DeleteButton onClick={onDelete}>Borrar</DeleteButton>
     </TaskContainer>
   );
+};
+
+// Validación de props
+TaskItem.propTypes = {
+  task: PropTypes.string.isRequired, // `task` debe ser una cadena obligatoria
+  onDelete: PropTypes.func.isRequired, // `onDelete` debe ser una función obligatoria
 };
 
 export default TaskItem;
